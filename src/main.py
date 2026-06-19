@@ -493,12 +493,11 @@ class AssemblyZeroConfigIDE(QMainWindow):
         self.console.append("⚙️ Preparing and building...")
         # =================================================================
         
-        # --- NEW CWD LOGIC: پیدا کردن پوشه هدف برای ذخیره و خواندن فایل‌ها ---
+     
         if self.current_file_path:
-            # اگر فایل ذخیره شده است، مسیر همان فایل به عنوان محیط کاری تعیین می‌شود
             work_dir = os.path.dirname(os.path.abspath(self.current_file_path))
         else:
-            # اگر فایل هنوز ذخیره نشده، یک پوشه workspace در کنار خود نرم‌افزار می‌سازیم
+          
             if getattr(sys, 'frozen', False) or hasattr(sys, 'importers'):
                 base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
             else:
@@ -506,13 +505,13 @@ class AssemblyZeroConfigIDE(QMainWindow):
             work_dir = os.path.join(base_dir, "workspace")
             os.makedirs(work_dir, exist_ok=True)
 
-        # نام‌گذاری فایل‌های موقت بیلد با پیشوند نقطه (برای مخفی بودن موقت)
+        
         asm_file = os.path.join(work_dir, ".temp_run.asm")
         obj_file = os.path.join(work_dir, ".temp_run.o")
         exe_file = os.path.join(work_dir, ".temp_run.elf")
 
         try:
-            # نوشتن کد داخل فایل اسمبلی موقت در همان پوشه هدف
+          
             with open(asm_file, "w", encoding="utf-8") as f:
                 f.write(code)
 
@@ -533,14 +532,13 @@ class AssemblyZeroConfigIDE(QMainWindow):
             # 3. Run
             self.console.append("▶️ Starting program execution...\n" + "-" * 50)
             
-            # چون cwd روی work_dir تنظیم شده، شبیه‌ساز را فقط با نام فایل صدا می‌زنیم
+            
             if os_type == "Windows":
                 run_cmd = [blink_path, "-m", ".temp_run.elf"]
             else:
                 run_cmd = ["./.temp_run.elf"]
 
             try:
-                # اجرای نهایی با تنظیم دقیق پوشه کاری. هر فایلی در کد اسمبلی ساخته شود اینجا قرار می‌گیرد
                 run_res = self._run_cmd(run_cmd, input_text=user_input, timeout=max_time, cwd=work_dir)
                 
                 # Only print the program's standard STDOUT
@@ -565,8 +563,7 @@ class AssemblyZeroConfigIDE(QMainWindow):
                 self.console.append(f"❌ Unexpected system error: {e}")
 
         finally:
-            # پاک‌سازی فایل‌های کامپایل شده برای جلوگیری از شلوغ شدن پوشه دانشجو
-            # فایل‌هایی که توسط خود دانشجو با سیستم‌کال اسمبلی ساخته شده‌اند (مثل text.txt) دست‌نخورده باقی می‌مانند
+      
             for f in [asm_file, obj_file, exe_file]:
                 if os.path.exists(f):
                     try:
