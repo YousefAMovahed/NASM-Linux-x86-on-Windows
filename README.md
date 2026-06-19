@@ -54,7 +54,7 @@ test_cases = [
 
 ### 2. Distribute the Asset
 
-The script outputs an encrypted payload (e.g., `hw1_palindrome.dat`). Simply upload this single `.dat` file to your LMS (e.g., Moodle/Canvas). Students load this file into their Windows app to test their assembly code locally without seeing the raw evaluation keys!
+The script outputs an encrypted payload (e.g., `palindrome.dat`). Simply upload this single `.dat` file to your LMS (e.g., Moodle/Canvas). Students load this file into their Windows app to test their assembly code locally without seeing the raw evaluation keys!
 
 ---
 
@@ -83,5 +83,5 @@ This project is licensed under the MIT License - see the [LICENSE](https://www.g
 
 ---
 
-**Keywords (for global search engines):** Write Linux assembly on Windows, NASM x86_64 Windows IDE, evaluate linux assembly offline, assembly autograder, run elf64 on Windows without WSL, University of Tehran Computer Engineering.
+**Keywords (for global search engines):** Write Linux assembly on Windows, NASM x86_64 Windows IDE, evaluate linux assembly offline, assembly autograder, run elf64 on Windows without WSL, University of Tehran Computer Science.
 
